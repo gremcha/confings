@@ -1,0 +1,189 @@
+[colors]
+background = #000000
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ac47ff
+secondary = #e60053
+alert = #bd2c40
+
+[bar/bar]
+enable-ipc = true
+bottom = false
+width = 100%
+height = 30
+dpi = 192
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-color = ${colors.background}
+line-size = 1
+
+padding-left = 0
+padding-right = 0
+module-margin-left = 3
+module-margin-right = 3
+
+separator = |
+
+font-0=Cozette:size=5;3
+font-1=Siji:size=5;3
+font-2=IPAGothic:size=5;3
+
+font-3 = FontAwesome5Free:style=Solid:size=5;4
+font-4 = FontAwesome5Free:style=Regular:size=5;4
+font-5 = FontAwesome5Brands:style=Regular:size=5;4
+
+
+modules-left = i3 xwindow
+modules-center = date
+modules-right = memory cpu backlight pulseaudio xkeyboard battery
+
+wm-restack = i3
+
+tray-position = right 
+tray-scale = 1.0
+;tray-transparent = true
+tray-background = ${colors.background}
+tray-maxsize = 20
+
+tray-offset-y = 0
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+overline-size = 10
+overline-color = ${colors.background}
+underline-size = 2
+underline-color = ${colors.background}
+
+
+; --------- MODULES --------- ;
+
+[module/wireless-network]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+
+[module/xwindow]
+type = internal/xwindow
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+; List of indicators to ignore
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+blacklist-2 = caps lock
+
+[module/battery]
+type = internal/battery
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>  |
+format-discharging = <ramp-capacity> <label-discharging>  |
+format-full = <ramp-capacity> <label-full>  |
+
+label-charging = %percentage%% %time%h
+label-discharging = %percentage%% %time%h 
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+bar-capacity-width = 10
+bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+bar-capacity-fill = █
+bar-capacity-fill-foreground = #ddffffff
+bar-capacity-fill-font = 3
+bar-capacity-empty = █
+bar-capacity-empty-font = 3
+bar-capacity-empty-foreground = #44ffffff
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format = <label>
+label = CPU - %percentage%%
+
+[module/date]
+type = internal/date
+date = %%{F#fff}%A, %d %B %Y | %%{F#fff}%I:%M%%{F#666}
+
+[module/memory]
+type = internal/memory
+format = <label>
+label = RAM - %gb_used%
+interval = 3
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <label-volume>
+
+label-volume = volume - %percentage%%
+label-muted = audio muted
+click-right = pavucontrol
+
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+use-actual-brightness = true
+enable-scroll = true
+format = <label>
+label = backlight - %percentage%%
+
+[module/i3]
+type = internal/i3
+
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+
+label-dimmed-underline = ${color.primary}
+
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 0
+label-mode-background = #e60053
+
+label-focused =  %index%
+label-focused-foreground = #ffffff
+label-focused-underline = ${colors.primary}
+label-focused-padding = 4
+
+label-unfocused = %index%
+label-unfocused-padding = 4
+
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 4
+
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 4
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 0
+label-separator-foreground = ${colors.primary}
